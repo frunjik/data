@@ -1348,6 +1348,8 @@ test("queryRecord - returning an array picks the first one but saves all records
     post: [{ id: 1, name: "Rails is omakase" }, { id: 2, name: "Ember is js" }]
   });
 
+  assert.expectDeprecation('The adapter returned an array for the primary data of a `queryRecord` response. This is deprecated as `queryRecord` should return a single record.');
+
   store.queryRecord('post', { slug: 'rails-is-omakaze' }).then(assert.wait(function(post) {
     var post2 = store.peekRecord('post', 2);
 
